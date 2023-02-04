@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--==================== Fav Icon =========================-->
+    <link
+      rel="shortcut icon"
+      href="/assets/img/favicon.png"
+      type="image/x-icon"
+    />
+    <!--==================== Remix Icon CDN =========================-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!--==================== Stylesheet =========================-->
+    <link rel="stylesheet" href="./style.css" />
+    <title>Auto Market</title>
+  </head>
+  <body>
+    <!-- =====================Header =========================== -->
+    <header class="header" id="header">
+      <nav class="nav container" id="nav">
+        <a href="#home" class="nav__logo">
+          <i class="ri-steering-line"></i>
+          AutoMart
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list" id="nav__list">
+            <li class="nav__item">
+              <a href="#home" class="nav__link">Home</a>
+            </li>
+            <li class="nav__item">
+              <a href="#about" class="nav__link">About</a>
+            </li>
+            <li class="nav__item">
+              <a href="#popular" class="nav__link">Popular</a>
+            </li>
+            <li class="nav__item">
+              <a href="#featured" class="nav__link">Featured</a>
+            </li>
+          </ul>
+          <div class="nav__close" id="nav-close">
+            <i class="ri-close-line"></i>
+          </div>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
+      </nav>
+    </header>
+    <!-- =====================Main =========================== -->
+    <main class="main">
+      <section class="home section" id="home">
+        <div class="shape big__shape"></div>
+        <div class="shape small__shape"></div>
+        <div class="home__container container grid">
+          <div class="home__data">
+            <h1 class="home__title">Choose The Best Car</h1>
+            <h2 class="home__subtitle">Porsche Mission E</h2>
+            <h3 class="home__elec">
+              <i class="ri-flashlight-fill"></i>
+              Electric Cars
+            </h3>
+          </div>
+          <img src="./assets/img/home.png" alt="" class="home_img" />
+          <div class="home__car">
+            <div class="home_car_data">
+              <div class="home__car_icon">
+                <i class="ri-temp-cold-line"></i>
+              </div>
+              <h2 class="home__car_number">24</h2>
+              <h3 class="home__car_name">Temperature</h3>
+            </div>
+            <div class="home_car_data">
+              <div class="home__car_icon">
+                <i class="ri-dashboard-3-line"></i>
+              </div>
+              <h2 class="home__car_number">873</h2>
+              <h3 class="home__car_name">MILEAGE</h3>
+            </div>
+            <div class="home_car_data">
+              <div class="home__car_icon">
+                <i class="ri-flashlight-fill"></i>
+              </div>
+              <h2 class="home__car_number">94%</h2>
+              <h3 class="home__car_name">BATTERY</h3>
+            </div>
+          </div>
+          <a href="#" class="home__button">START</a>
+        </div>
+      </section>
+      <section class="about section" id="about"></section>
+      <section class="popular section" id="popular"></section>
+      <section class="feature section" id="feature"></section>
+    </main>
+    <!-- =====================Footer =========================== -->
+    <script src="./app.js"></script>
+  </body>
+</html>
