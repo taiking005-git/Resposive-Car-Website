@@ -32,13 +32,13 @@ $font-semi-bold:600;
 $z-fixed:100;
 $z-tooltip:10;
 
-// screen sizes
-$large-screen:968px;
-$medium-screen:968px;
-$small-screen:767px;
+//=========================== screen sizes
+$large-screen:1040px;
+$medium-screen:767px;
+$small-screen:576px;
 
-// responsive typography
-@media screen and (min-width: $medium-screen) {
+//=========================== responsive typography
+@media screen and (min-width: $small-screen) {
     $h1-font-size: 2.25rem;
     $h2-font-size: 1.5rem;
     $h3-font-size: 1.25rem;
@@ -57,6 +57,8 @@ $small-screen:767px;
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+
 }
 
 body {
@@ -97,17 +99,69 @@ img {
 .big__shape {
     width: 400px;
     height: 400px;
+
+    @media screen and (min-width:$large-screen) {
+        width: 500px;
+        height: 500px;
+    }
 }
 
 .small__shape {
     width: 300px;
     height: 300px;
+
+    @media screen and (min-width:$large-screen) {
+        width: 400px;
+        height: 400px;
+    }
 }
 
+.smaller__shape {
+    width: 180px;
+    height: 180px;
+    filter: blur(64px);
+}
+
+.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: $primary-color;
+    color: $white-color;
+    border-radius: .25rem;
+    transition: .3s;
+
+    &:hover {
+        background-color: $text-color-light;
+    }
+}
+
+
+
 .container {
-    // max-width: 1024px;
-    margin-right: 1.5rem;
-    margin-left: 1.5rem;
+    max-width: 1024px;
+    margin: 0 auto;
+
+    @media (min-width: $small-screen) {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    @media (min-width: $medium-screen) {
+        max-width: none;
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+    }
+
+    @media (min-width: 320px) {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    @media (min-width: $large-screen) {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
 }
 
 .grid {
@@ -117,6 +171,10 @@ img {
 
 .section {
     padding: 4.5rem 0 2rem;
+
+    @media screen and (min-width: $medium-screen) {
+        padding: 4rem 0 2rem;
+    }
 }
 
 .section__title {
@@ -140,7 +198,8 @@ img {
 
     &.header__scrolled {
         background-color: $body-color;
-        border: 0 0 1rem 1rem;
+        border-radius: 0 0 1rem 1rem;
+        box-shadow: 0 2px 4px hsla(0, 0%, 100%, .1);
     }
 
     .nav {
@@ -148,6 +207,10 @@ img {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media screen and (min-width:$medium-screen) {
+            height: calc($header-height + 1.5rem);
+        }
 
         &__title,
         &__logo {
@@ -194,7 +257,10 @@ img {
 
             .nav__list {
                 display: flex;
+                align-items: center;
                 gap: 2rem;
+
+
 
                 .nav__item {
                     padding: .3rem .5rem;
@@ -211,6 +277,10 @@ img {
                         &:hover {
                             color: $primary-color;
                             // background-color: $primary-color;
+                        }
+
+                        &.active-link {
+                            color: $primary-color;
                         }
                     }
 
@@ -241,6 +311,11 @@ img {
                     row-gap: 3rem;
                 }
 
+                .nav__link {
+                    font-size: $normal-font-size;
+                    text-transform: initial;
+                }
+
                 .nav__close {
                     display: block;
                     position: absolute;
@@ -255,6 +330,7 @@ img {
             &.show-menu {
                 right: 0;
             }
+
         }
 
     }
@@ -264,6 +340,7 @@ img {
 .home {
     position: relative;
     overflow: hidden;
+    margin-top: 4rem;
 
     .big__shape {
         position: absolute;
@@ -278,10 +355,19 @@ img {
     }
 
     .home {
+
         &__container {
             position: relative;
-            // padding-top: 4rem;
             gap: 3rem;
+
+            @media screen and (min-width:$large-screen) {
+                // padding-top: 0;
+
+            }
+
+            @media screen and (max-width:320px) {
+                gap: 2rem;
+            }
         }
 
         &__data {
@@ -315,6 +401,13 @@ img {
         &_img {
             width: 280px;
             justify-self: center;
+
+            @media screen and (min-width:$large-screen) {
+
+                &__img {
+                    width: 380px;
+                }
+            }
         }
 
         &__car {
@@ -322,6 +415,14 @@ img {
             align-items: center;
             justify-content: center;
             gap: 4rem;
+
+            @media screen and (max-width:320px) {
+                gap: 2rem;
+            }
+
+            @media screen and (min-width:$large-screen) {
+                column-gap: 7rem;
+            }
 
             .home_car_data {
                 text-align: center;
@@ -348,8 +449,14 @@ img {
                 align-items: center;
                 font-size: .875rem;
                 margin-bottom: .75rem;
+
+                @media screen and (min-width:$large-screen) {
+                    font-size: 1.25rem;
+                    margin-bottom: 1rem;
+                }
             }
         }
+
     }
 
     .home__button {
@@ -365,6 +472,17 @@ img {
         font-size: $small-font-size;
         font-weight: $font-medium;
         color: $text-color;
+        transition: box-shadow .3s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 8px hsl(158, 89%, 48%);
+            animation: button2 0.5s infinite;
+        }
+
+        &:active {
+            transform: scale(105%);
+        }
+
 
         &::before {
             content: '';
@@ -386,9 +504,752 @@ img {
                 box-shadow: 0 0 24px hsl(158, 89%, 43%);
             }
         }
+
+        @keyframes button2 {
+            0% {
+                box-shadow: 0 0 12px hsl(158, 89%, 43%);
+            }
+
+            50% {
+                box-shadow: 0 0 24px $secondary-color;
+                border: 2px solid $secondary-color;
+            }
+        }
     }
+
+}
+
+// =========================== About Section ===================================
+.about {
+    &__container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+
+        // responsive nav
+        @media screen and (max-width:$medium-screen) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width:$large-screen) {
+            column-gap: 6rem;
+            align-items: center;
+        }
+    }
+
+    &__group {
+        position: relative;
+        width: max-content;
+
+        @media screen and (min-width:$medium-screen) {
+            width: 350px;
+            justify-self: center;
+        }
+
+        @media screen and (min-width:$large-screen) {
+            width: 480px;
+        }
+
+        .about__img {
+            width: 310px;
+            border-radius: .5rem;
+
+            @media screen and (min-width:$large-screen) {
+                width: 480px;
+            }
+        }
+
+        .about__card {
+            width: 180px;
+            position: absolute;
+            right: 2px;
+            bottom: 8px;
+            background-color: hsla(0, 0%, 100%, .1);
+            backdrop-filter: blur(16px);
+            padding: 1rem .75rem;
+            text-align: center;
+            border-radius: 1.25rem;
+
+            @media screen and (max-width:320px) {
+                width: 150px;
+            }
+
+            @media screen and (min-width:$large-screen) {
+                width: 198px;
+                padding: 1rem 1.25rem;
+            }
+
+
+            &_title {
+                font-size: $h3-font-size;
+                margin-bottom: .5rem;
+            }
+
+            &_description {
+                font-size: var($small-font-size);
+            }
+
+        }
+    }
+
+
+
+    &__data {
+
+        .about__title {
+            text-align: initial;
+            margin-bottom: 2rem;
+        }
+
+        .about__description {
+            margin-bottom: 2rem;
+
+            @media screen and (min-width:$large-screen) {
+                padding-right: 4rem;
+                margin-bottom: 3rem;
+            }
+        }
+    }
+
+
 
 
 }
 
-// =========================== Header and Nav ===================================
+// =========================== Popular Section ===================================
+.popular {
+    &__container {
+        padding-top: 1rem;
+
+        @media screen and (min-width:$large-screen) {
+            width: 875px;
+            padding-top: 3rem;
+        }
+    }
+
+    &__card {
+        position: relative;
+        width: 238px;
+        background-color: $container-color;
+        padding: 2rem 1.5rem 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 3.5rem;
+        overflow: hidden;
+
+        @media screen and (min-width:$large-screen) {
+            width: 258px;
+            border-radius: 1.25rem;
+            margin-bottom: 5rem;
+        }
+
+        .smaller__shape {
+            position: absolute;
+            top: -2.5rem;
+            left: -2.5rem;
+        }
+
+        &:hover .popular__img {
+            transform: translateX(-.25rem);
+        }
+    }
+
+    &__title,
+    &__subtitle,
+    &__img {
+        position: relative;
+    }
+
+    &__title {
+        font-size: $h2-font-size;
+        margin-bottom: 0.25rem;
+    }
+
+    &__subtitle {
+        font-size: $normal-font-size;
+        color: $text-color;
+        font-weight: 400;
+    }
+
+    &__img {
+        width: 160px;
+        margin: .75rem 0 1.25rem 1.5rem;
+        transition: .3s;
+
+        @media screen and (min-width:$large-screen) {
+            width: 180px;
+            margin: 0.75rem 0 1.25rem 2rem;
+        }
+    }
+
+    &__data {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        gap: .5rem 1.25rem;
+        margin-bottom: 2rem;
+
+        &_group {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: $smaller-font-size;
+            color: $white-color;
+        }
+
+        i {
+            font-size: 1rem;
+        }
+
+        &__price {
+            font-size: $h3-font-size;
+        }
+    }
+
+    &__button {
+        border: none;
+        outline: none;
+        padding: .7rem 1rem;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-radius: 1rem 0 1rem 0;
+        cursor: pointer;
+
+        i {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+// =========================== Swiper Class ===================================
+.swiper-pagination-bullet {
+    background: $text-color;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: $primary-color;
+}
+
+// =========================== Features Section ===================================
+.features {
+    overflow: hidden;
+    position: relative;
+
+    &__container {
+        padding-top: 2rem;
+        grid-template-columns: 285px;
+        justify-content: center;
+
+        @media screen and (min-width:$large-screen) {
+            padding: 2rem 0 3rem;
+        }
+    }
+
+    &__group {
+        display: grid;
+        position: relative;
+    }
+
+    &__img {
+        position: relative;
+        width: 150px;
+        justify-self: center;
+
+        @media screen and (min-width:$large-screen) {
+            width: 200px;
+        }
+    }
+
+    &__card {
+        width: 112px;
+        background-color: hsla(0, 0%, 100%, .1);
+        backdrop-filter: blur(16px);
+        border-radius: 1.25rem;
+        padding: .75rem 2rem;
+        color: $title-color;
+        position: absolute;
+
+        @media screen and (min-width:$large-screen) {
+            width: 127px;
+            padding: 0.75rem 2.5rem;
+        }
+
+        &.feature__card_1 {
+            top: 4rem;
+            left: 1.5rem;
+        }
+
+        &.feature__card_2 {
+            top: 8rem;
+            right: 1rem;
+        }
+
+        &.feature__card_3 {
+            left: 1.5rem;
+            bottom: 2rem;
+        }
+
+        &_title {
+            font-size: $h3-font-size;
+            margin-bottom: .25rem;
+        }
+
+        &_description {
+            font-size: $smaller-font-size;
+        }
+    }
+
+    .features__map {
+        max-width: initial;
+        width: 450px;
+        position: absolute;
+        top: 8rem;
+        left: -3rem;
+        margin: auto;
+        transform: rotate(-22deg);
+        z-index: -2;
+
+        @media screen and (min-width:576px) {
+            top: 0;
+            left: 0;
+        }
+
+        @media screen and (min-width:$large-screen) {
+            width: 650px;
+            top: 11rem;
+        }
+    }
+}
+
+// =========================== Featured Section ===================================
+.featured {
+    &__container {
+        padding-top: 1rem;
+
+        @media screen and (min-width:$large-screen) {
+            padding-bottom: 2.5rem;
+        }
+    }
+
+    &__filters {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 1rem;
+        margin-bottom: 3.5rem;
+
+        @media screen and (min-width:$large-screen) {
+            column-gap: 2rem;
+            margin-bottom: 4.5rem;
+        }
+
+        .featured__item {
+            height: 48px;
+            width: 48px;
+            border: none;
+            outline: none;
+            padding: 0.75rem;
+            border-radius: .75rem;
+            background-color: $container-color;
+            color: $white-color;
+            font-size: $normal-font-size;
+            cursor: pointer;
+            transition: .3s;
+
+            @media screen and (min-width:$large-screen) {
+                width: 52px;
+                height: 52px;
+            }
+
+            img {
+                width: 1.5rem;
+
+                @media screen and (min-width:$large-screen) {
+                    width: 2rem;
+                }
+            }
+
+            img,
+            span {
+                opacity: .3;
+                transition: .3s;
+            }
+
+            &:hover {
+                background-color: $primary-color;
+            }
+
+            &:hover img,
+            &:hover span {
+                opacity: 1;
+            }
+
+        }
+    }
+
+    &__content {
+        grid-template-columns: 228px;
+        row-gap: 2.5rem;
+        justify-content: center;
+
+
+
+        @media screen and (min-width:$medium-screen) {
+            grid-template-columns: repeat(2, 228px);
+        }
+
+        @media screen and (min-width:$large-screen) {
+            grid-template-columns: repeat(3, 248px);
+            gap: 4rem;
+        }
+    }
+
+    &__card {
+        position: relative;
+        background-color: $container-color;
+        padding: 2rem 1.5rem 1.5rem;
+        border-radius: 1rem;
+
+        .smaller__shape {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+        }
+
+        &:hover .featured__img {
+            transform: translateX(.25rem);
+        }
+    }
+
+    &__title,
+    &__subtitle,
+    &__img {
+        position: relative;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: $h2-font-size;
+        margin-bottom: .25rem;
+    }
+
+    &__subtitle {
+        font-size: $normal-font-size;
+        color: $text-color;
+        font-weight: 400;
+    }
+
+    &__img {
+        width: 180px;
+        margin: 1.5rem 0;
+        transition: .3s;
+    }
+
+    &__price {
+        font-size: $h3-font-size;
+    }
+
+    &__button {
+        border: none;
+        outline: none;
+        padding: .75re 1rem;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-radius: 1rem 0 1rem 0;
+        cursor: pointer;
+
+        i {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+// =========================== Offer Section ===================================
+.offer {
+    position: relative;
+
+    &__container {
+        grid-template-rows: max-content 224px;
+
+        @media screen and (max-width:320px) {
+            grid-template-rows: max-content 180px;
+        }
+
+        @media screen and (min-width:$medium-screen) {
+            grid-template-rows: initial;
+            grid-template-columns: .5fr;
+            justify-content: center;
+        }
+
+        @media screen and (min-width:$large-screen) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+            align-items: center;
+            padding-bottom: 2rem;
+        }
+    }
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__data,
+    &__img {
+        position: relative;
+    }
+
+    &__data {
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: 2rem;
+    }
+
+    &__data,
+    &__title {
+        text-align: initial;
+    }
+
+    &__description {
+        margin-bottom: 3rem;
+
+        @media screen and (max-width:320px) {
+            padding-right: 6rem;
+        }
+    }
+
+    &__img {
+        position: absolute;
+        max-width: initial;
+        width: 400px;
+        bottom: 5rem;
+        right: -5.5rem;
+
+        @media screen and (max-width:320px) {
+            width: 340px;
+        }
+
+        @media screen and (min-width:$medium-screen) {
+            position: relative;
+            bottom: initial;
+            right: initial;
+            width: 450px;
+        }
+    }
+
+    &__data {
+        @media screen and (min-width:$medium-screen) {
+            margin-bottom: 4rem;
+        }
+
+        @media screen and (max-width:$large-screen) {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// =========================== Logos Section ===================================
+.logos {
+    &__img {
+        width: 40px;
+        opacity: .4;
+        transition: .3s;
+
+        @media screen and (min-width:$large-screen) {
+            width: 50px;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &__container {
+        grid-template-columns: repeat(3, max-content);
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+        margin-bottom: 2rem;
+
+        @media screen and (max-width:320px) {
+            gap: 2.5rem;
+        }
+
+        @media screen and (min-width:$medium-screen) {
+            gap: 4rem 8rem;
+        }
+
+        @media screen and (min-width:$large-screen) {
+            grid-template-columns: repeat(6, max-content);
+        }
+    }
+}
+
+// =========================== Logos Section ===================================
+.footer {
+    position: relative;
+    overflow: hidden;
+    grid-template-columns: repeat(2, max-content);
+
+    .small__shape,
+    .big__shape {
+        position: absolute;
+    }
+
+    .big__shape {
+        width: 300px;
+        height: 300px;
+        left: -12rem;
+        top: 6rem;
+    }
+
+    .small__shape {
+        right: -13rem;
+        bottom: -6rem;
+    }
+
+    &__container {
+        row-gap: 2.5rem;
+        position: relative;
+
+        @media screen and (min-width:$medium-screen) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width:$large-screen) {
+            grid-template-columns: repeat(4, max-content);
+            justify-content: space-between;
+        }
+    }
+
+    &__logo {
+        display: inline-flex;
+        align-items: center;
+        column-gap: .25rem;
+        color: $title-color;
+        font-size: $h2-font-size;
+        font-weight: $font-semi-bold;
+        margin-bottom: 1.25rem;
+        transition: .3s;
+
+        @media screen and (min-width:$large-screen) {
+            column-gap: .5rem;
+        }
+
+        i {
+            font-size: 1.5rem;
+            font-weight: 500;
+
+            @media screen and (min-width:$large-screen) {
+                font-size: 2rem;
+            }
+        }
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+
+    &__title {
+        font-size: $h3-font-size;
+        margin-bottom: 1.25rem;
+
+        @media screen and (min-width:$large-screen) {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        row-gap: .5rem;
+
+        @media screen and (min-width:$large-screen) {
+            row-gap: .75rem;
+        }
+    }
+
+    &__link,
+    &__social_link {
+        color: $text-color;
+        transition: .3s;
+    }
+
+    &__link:hover,
+    &__social_link:hover {
+        color: $primary-color;
+    }
+
+    &__social {
+        display: flex;
+        column-gap: 1.5rem;
+
+        &_link {
+            font-size: 1.25rem;
+        }
+    }
+
+    &__copy {
+        display: block;
+        margin-top: 4.5rem;
+        text-align: center;
+        font-size: $small-font-size;
+        color: $text-color-light;
+
+        @media screen and (min-width:$large-screen) {
+            margin-top: 8rem;
+            padding-bottom: 1rem;
+        }
+    }
+}
+
+// ========================== SCROLL BAR ==========================/
+::-webkit-scrollbar {
+    width: 0.6rem;
+    background-color: hsl(219, 4%, 16%);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsl(219, 4%, 24%);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(219, 4%, 32%);
+}
+
+// ======================== SCROLL UP ===========================
+.scrollup {
+    display: inline-flex;
+    position: fixed;
+    right: 1rem;
+    bottom: -30%;
+    background-color: hsla(0, 0%, 100%, .1);
+    backdrop-filter: blur(16px);
+    padding: .45rem;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    color: $white-color;
+    z-index: $z-tooltip;
+    transition: .4s ease-in-out;
+
+    @media screen and (min-width:$large-screen) {
+        right: 3rem;
+    }
+
+    &.show-scroll {
+        bottom: 3rem;
+    }
+
+    &:hover {
+        transform: translateY(-.25rem);
+        background-color: hsl(219, 4%, 32%);
+    }
+}
